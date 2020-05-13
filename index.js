@@ -4,7 +4,7 @@
 /* Create variables for principal, interest rate, and years. Assign them the values 200000, 0.05, and 30 respectively. Create another value called name and give it the value of your own name.
 */
 
-
+console.log('hello world');
 
 
 
