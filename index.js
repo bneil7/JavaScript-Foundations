@@ -70,6 +70,8 @@ function mortgageCalculator(P, I, N){
 }
 (mortgageCalculator(200000, 0.05, 30));
 
+/// can't seem to get this working, will need to revisit tomorrow after some further support
+
 
 
 
