@@ -40,7 +40,7 @@ const denominator = (Math.pow((1 + monthlyInterestRate), periods) - 1);
 
 const monthlyRate = (numerator / denominator).toFixed(2);
 
-console.log (monthlyRate);
+console.log(monthlyRate);
 
 
 // 🏡 Task 3: Function
@@ -49,10 +49,10 @@ console.log (monthlyRate);
 If your name is `Oscar` mortgageCalculator() should return "Oscar, your monthly rate is 1073.64"
 */
 
-function mortgageCalculator(){
+function mortgageCalculator1(){
     return name + ", your monthly rate is " + (monthlyRate);
 }
-console.log(mortgageCalculator());
+console.log(mortgageCalculator1());
 
 
 // 🏡 Task 4: Arguments and Parameters
@@ -62,18 +62,17 @@ For example,
 mortgageCalculator(200000, 0.05, 30); <-- should return 1,073.64
 */
 
-function mortgageCalculator(P, I, N){
+function mortgageCalculator2(P, I, N){
     let principal = P;
-    let monthlyInterestRate = I;
-    let periods = N;
-    return name + ", your monthly rate is " + (monthlyRate);
+    let monthlyInterestRate = I / 12;
+    let periods = N * 12;
+    const numerator = (principal * (monthlyInterestRate * Math.pow((1 + monthlyInterestRate), periods)));
+    const denominator = (Math.pow((1 + monthlyInterestRate), periods) - 1);
+    const monthlyRate = (numerator / denominator).toFixed(2);
+
+    return monthlyRate;
 }
-(mortgageCalculator(200000, 0.05, 30));
-
-/// can't seem to get this working, will need to revisit tomorrow after some further support
-
-
-
+console.log(mortgageCalculator2(200000, 0.05, 30));
 
 
 // 🏡 Task 5: Conditionals
@@ -82,7 +81,37 @@ function mortgageCalculator(P, I, N){
 Then, add control flow within your function such that IF creditScore is above 740, interest rate drops by 0.5%, if credit score is below 660, interest rate increases by 0.5% and if credit score is anywhere between 660 and 740 interest rate doesn't change.
 */
 
+// function creditScore (more than one parameter, one IS A CREDIT SCORE, that credit score needs to be between 0-800, another parameter should be interest rate,)
+// {
+//     if{
+//         credit score > 740, then interest rate drops by 0.5 PERCENT
+//     }
+//     else if {
+//         credit score < 660, then interest rate increases 0.5 PERCENT
+//     }
+//     }
+// }
 
+function mortgageCreditScore(P, I, N, cS){
+    let principal = P;
+    
+    if(cS > 740){
+        I -= 0.005
+    } else if(cS < 660){
+        I += 0.005
+    }
+    let monthlyInterestRate = I / 12;
+    let periods = N * 12;
+
+    const numerator = (principal * (monthlyInterestRate * Math.pow((1 + monthlyInterestRate), periods)));
+    const denominator = (Math.pow((1 + monthlyInterestRate), periods) - 1);
+    const monthlyRate = (numerator / denominator).toFixed(2);
+
+    return monthlyRate;
+}
+console.log(mortgageCreditScore(200000, 0.05, 30, 800));
+
+////////// >> Enki for JavaScript, Codecademy for for loops, sololearn for syntax; << ///////////
 
 
 // 🏡 Task 6: Loops
@@ -101,7 +130,32 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 "{Name}, with an interest rate of 0.06, your monthly rate is $1199"
 */
 
+function variableInterestRate(P, I, N){
+    // should be same as mortgageCalculator , but log monthly payment , for 10 different interest rates , 
+    // at 0.005 increments , + or - 0.02 from the inputted interest rate 
+    
 
+    for (let incrementalInterest = I - .02; incrementalInterest <=  I + .02; incrementalInterest += .005){
+        let principal = P;
+        let monthlyInterestRate = incrementalInterest / 12;
+        let periods = N * 12;
+
+        const numerator = (principal * (monthlyInterestRate * Math.pow((1 + monthlyInterestRate), periods)));
+        const denominator = (Math.pow((1 + monthlyInterestRate), periods) - 1);
+        const monthlyRate = (numerator / denominator).toFixed(2);
+    
+        console.log(name + ", with an interest rate of " + incrementalInterest + ", your monthly rate is $" + monthlyRate);
+    }
+    return " ";
+}
+console.log(variableInterestRate(200000, 0.04, 30));
+
+// 1. create a function
+// 2. same calculator as (mortgageCalculator())
+//     2a. but should console.log() monthly payment for 10 rates
+//     2b. each different rate increments * 0.005 (0.5 percent)
+//     2c. + or - 0.02 (2 percent)
+// 3. use for loop
 
 
 // 🌟🌟🌟 STRETCH 🌟🌟🌟//
